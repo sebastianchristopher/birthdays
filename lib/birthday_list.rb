@@ -11,4 +11,9 @@ class BirthdayList
   def print
     @birthdays.each { |birthday| puts "#{birthday.name}: #{birthday.birthday}" }
   end
+
+  def birthdays_today
+    @birthdays.each { |birthday| puts "It's #{birthday.name}'s birthday today! They are #{birthday.age} years old!" if birthday.birthday == Date.today }
+    nil
+  end
 end
