@@ -1,26 +1,30 @@
 require 'birthday_list'
 
 describe BirthdayList do
+  let(:birthday) { double(:birthday) }
+  let(:birthday_class) { double(:birthday_class, new: birthday) }
+  subject(:subject) { described_class.new(birthday_class) }
   it 'can store birthdays' do
-    birthday = double(:birthday)
-    subject.add_birthday(birthday)
+
+    subject.add_birthday('Foo', 'bar')
     expect(subject.birthdays).to include(birthday)
   end
   it 'can print out the name and birthday of each stored birthday' do
-    chris = double(:chris, name: 'Chris', birthday: Date.new(1989, 01, 04))
-    jesus = double(:jesus, name: 'Jesus', birthday: Date.new(0000, 12, 25))
-    subject.add_birthday(chris)
-    subject.add_birthday(jesus)
-    expect { subject.print }.to output("Chris: 1989-01-04\nJesus: 0000-12-25\n").to_stdout
+    allow(birthday).to receive(:name).and_return('Chris')
+    allow(birthday).to receive(:birthday).and_return(Date.new(1989, 01, 04))
+    subject.add_birthday('Chris', Date.new(1989, 01, 04))
+    expect { subject.print }.to output("Chris: 1989-01-04\n").to_stdout
   end
   it 'can find a birthday from birthdays that matches today' do
-    birthday = double(:birthday, name: 'Mr Birthday', birthday: Date.today, age: 0)
-    subject.add_birthday(birthday)
+    allow(birthday).to receive(:name).and_return('Mr Birthday')
+    allow(birthday).to receive(:birthday).and_return(Date.today)
+    allow(birthday).to receive(:age).and_return(0)
+    subject.add_birthday('Mr Birthday', Date.today)
     expect { subject.birthdays_today }.to output("It's Mr Birthday's birthday today! They are 0 years old!\n").to_stdout
   end
   it 'returns nil if no birthdays today' do
-    birthday = double(:birthday, name: 'Mr Nobody', birthday: Date.today + 1, age: 0)
-    subject.add_birthday(birthday)
+    allow(birthday).to receive(:birthday)
+    subject.add_birthday('Mr Nobody', Date.today + 1)
     expect(subject.birthdays_today).to be_nil
   end
 end
