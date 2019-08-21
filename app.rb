@@ -8,8 +8,8 @@ class BirthdayApp < Sinatra::Base
   end
 
   post '/birthday' do
+    redirect '/' if params[:name].empty? || params[:birthday].empty?
     @birthday = Birthday.new(params[:name], Date.parse(params[:birthday]))
-    # redirect '/' if @name.nil? || @dob.nil?
     erb(:birthdays)
   end
 

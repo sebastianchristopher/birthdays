@@ -19,4 +19,11 @@ feature "homepage" do
       expect(page).to have_content('Your birthday will be in 1 days, Chris.')
     end
   end
+  context "no data is entered" do
+    scenario 'I should see the home screen' do
+      visit '/'
+      click_button 'Submit'
+      expect(page).to have_content('Enter name')
+    end
+  end
 end
