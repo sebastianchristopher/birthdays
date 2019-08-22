@@ -1,5 +1,8 @@
+<% if @error %>
+  <h3 style="color:red;"> Please enter a name and DOB (dd-mm-yyyy)</h3>
+<% end %>
 <form name=birthday action='/birthday' method='POST'>
   Enter name: <input type='text' name="name"> <br><br>
-  Enter birthday (dd/mm/yyyy): <input type="date" name="birthday"> <br><br>
+  Enter birthday: <input type="date" name="birthday"> <br><br>
   <input type='submit' value='Submit'>
 </form>

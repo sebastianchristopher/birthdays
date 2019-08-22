@@ -15,6 +15,7 @@ feature "homepage" do
       visit '/'
       fill_in :name, with: 'Chris'
       fill_in :birthday, with: Date.today.prev_day
+      p Date.today.prev_day
       click_button 'Submit'
       expect(page).to have_content('Your birthday will be in 1 days, Chris.')
     end
@@ -23,7 +24,7 @@ feature "homepage" do
     scenario 'I should see the home screen' do
       visit '/'
       click_button 'Submit'
-      expect(page).to have_content('Enter name')
+      expect(page).to have_content('Please enter a name and DOB (dd-mm-yyyy)')
     end
   end
 end
