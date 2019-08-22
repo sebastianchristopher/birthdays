@@ -14,7 +14,7 @@ describe Birthday do
     expect(birthday.age).to eq(0)
   end
   it 'can return the number of days until next birthday' do
-    birthday = described_class.new('Person', Date.today.prev_day)
+    birthday = described_class.new('Person', Date.today.next_day)
     expect(birthday.days_until).to eq(1)
   end
 end

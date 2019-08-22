@@ -11,6 +11,12 @@ class Birthday
   end
 
   def days_until
-    (Date.today - Date.new(Date.today.year, @birthday.month, @birthday.day)).to_i
+    if @birthday.day - Date.today.day < 0
+      year = Date.today.year + 1
+    else
+      year = Date.today.year
+    end
+    puts "year = #{year}"
+    (Date.new(year, @birthday.month, @birthday.day) - Date.today).to_i
   end
 end

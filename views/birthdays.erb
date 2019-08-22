@@ -1,5 +1,14 @@
-<% if @birthday.birthday == Date.today %>
-  <h1>Happy Birthday <%= @birthday.name %>!</h1>
-<% else %>
-  <h2>Your birthday will be in <%= @birthday.days_until %> days, <%= @birthday.name %>.</h2>
-<% end %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,100' rel='stylesheet' type='text/css'>
+    <link href="style.css"  type="text/css"  rel="stylesheet">
+  </head>
+  <body>
+    <% if @birthday.birthday == Date.today %>
+      <h1>Happy Birthday <%= @birthday.name %>!</h1>
+    <% else %>
+      <h2>Your birthday will be in <%= @birthday.days_until %> days, <%= @birthday.name %>.</h2>
+    <% end %>
+  </body>
+</html>
